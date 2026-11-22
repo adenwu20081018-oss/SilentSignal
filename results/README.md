@@ -1,6 +1,6 @@
 # Recording real test results
 
-The CSV is deliberately header-only. No trial has been invented. Copy it to a new file before recording observations.
+The CSV is a blank template. Copy it to a new file before recording results.
 
 | Field | Meaning / allowed values |
 | --- | --- |
@@ -26,7 +26,7 @@ The CSV is deliberately header-only. No trial has been invented. Copy it to a ne
 
 `alert_observed` means a newly observed notification activation, not a retained OLED label. Record which outputs worked in the adjacent fields. If no reliable alert observation exists, mark the row incomplete so it is excluded from the combined analysis. Output correctness still needs manual review: the script does not infer tactile performance from an OLED string.
 
-Run `python Results/analyze_results.py Results/your-records.csv` from the repository root. Output is JSON on standard output; redirect to a new file if desired. It validates required scoring fields, rejects duplicate trial IDs, excludes incomplete/control rows, separates modes and keeps background exposure out of event metrics. Null ratios mean no denominator. It does not pool filtered-mode labels into raw recognition accuracy.
+Run `python results/analyze_results.py results/your-records.csv` from the repository root. Output is JSON on standard output; redirect to a new file if desired. It validates required scoring fields, rejects duplicate trial IDs, excludes incomplete/control rows, separates modes and keeps background exposure out of event metrics. Null ratios mean no denominator. It does not pool filtered-mode labels into raw recognition accuracy.
 
 The script reports aggregation by mode. For condition comparisons, pass separate CSV subsets for each distance, background, source type and firmware revision; never compare pooled totals as if their conditions were matched. Preserve the original complete log. Specify whether background exposure includes acknowledgment downtime; this utility uses the full recorded `exposure_s` and reports an operational rate under that acknowledgment procedure.
 

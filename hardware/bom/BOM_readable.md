@@ -1,6 +1,6 @@
-# Supplied BOM — readable extraction
+# Bill of materials
 
-Source: [workbook with creator metadata removed](bomfile.xls). Original values and descriptions are retained; ambiguous part identities are not resolved here.
+Source: [bomfile.xls](bomfile.xls).
 
 | Comment | Description | Designator | Footprint | LibRef | Quantity |
 | --- | --- | --- | --- | --- | --- |

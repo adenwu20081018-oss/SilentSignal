@@ -12,18 +12,8 @@ sdkconfig.old
 .env.*
 *.pem
 *.key
-# Temporary/local preview files
+# Local files
 __pycache__/
 *.pyc
 .DS_Store
 Thumbs.db
-preview.html
-Documentation/*.html
-Documentation/preview-*.png
-Documentation/photo-contact-sheet.jpg
-# All generated Markdown previews and local preparation artifacts
-**/*.html
-Documentation/render_preview.mjs
-Documentation/prepare_assets.py
-Documentation/link_check.json
-Documentation/photo-contact-sheet.jpg
