@@ -1,0 +1,29 @@
+# Generated firmware outputs
+**/build/
+**/managed_components/
+sdkconfig.old
+**/sdkconfig.old
+# Machine-specific configuration and credentials
+.vscode/
+**/.vscode/
+.devcontainer/
+**/.devcontainer/
+.env
+.env.*
+*.pem
+*.key
+# Temporary/local preview files
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
+preview.html
+Documentation/*.html
+Documentation/preview-*.png
+Documentation/photo-contact-sheet.jpg
+# All generated Markdown previews and local preparation artifacts
+**/*.html
+Documentation/render_preview.mjs
+Documentation/prepare_assets.py
+Documentation/link_check.json
+Documentation/photo-contact-sheet.jpg

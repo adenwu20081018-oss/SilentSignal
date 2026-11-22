@@ -1,0 +1,242 @@
+[
+  {
+    "path": ".gitignore",
+    "sha256": "bbc18e22fc7acc18645cc42355befc47ae198437ff27d269a8d75e2425de1c60",
+    "bytes": 600
+  },
+  {
+    "path": "Datasets/README.md",
+    "sha256": "e5eb0a9228dd1045bf2808051c83357aeec9844e127359dca6f60a4e795cfb26",
+    "bytes": 370
+  },
+  {
+    "path": "Demo/README.md",
+    "sha256": "522a6c0713d131700d07ad1b7239c83246ba973e6fec1c9ed5354feeb48f1705",
+    "bytes": 936
+  },
+  {
+    "path": "Documentation/check_analysis.py",
+    "sha256": "0bf7451d9927a3438ddedd6b78e8a9e09b6139487566345d2c052fdae6edf489",
+    "bytes": 1987
+  },
+  {
+    "path": "Documentation/Publication_Readiness.md",
+    "sha256": "4776240ee9d4d14ef38fe102d3daa34f1e8276af576a12619e0c1987f51ff487",
+    "bytes": 4630
+  },
+  {
+    "path": "Documentation/sanitization.json",
+    "sha256": "1b5b82b1d4ecc5ac6cef0b69257e9355bb992a3390fae6b3807ddca01c61d53e",
+    "bytes": 1571
+  },
+  {
+    "path": "Documentation/Testing_and_Engineering_Analysis.md",
+    "sha256": "f275ba1c55394d25a48aef463e065598d67f606565158afe93c9f63e6ede208c",
+    "bytes": 28843
+  },
+  {
+    "path": "Documentation/Upload_Review.md",
+    "sha256": "08a3faac74fda2f8f9ec2ee3be1ad41764290e3ef76091f31ab4cd2a9bd12d6a",
+    "bytes": 1897
+  },
+  {
+    "path": "Firmware/CMakeLists.txt",
+    "sha256": "00752e327f5d00f0025e797064bb68fec748fcc67e2dac856a36200ab13e1c58",
+    "bytes": 367
+  },
+  {
+    "path": "Firmware/components/CMakeLists.txt",
+    "sha256": "ca7e4fce9726fd13cd1a9ef16772350e4b2ff4ab95ca936d5b0f5392bdf44193",
+    "bytes": 407
+  },
+  {
+    "path": "Firmware/components/LED/LED.c",
+    "sha256": "1764da046914b7acc1d2c702a2ef0455c2a9e9d9a53d076e02ef65fac111c223",
+    "bytes": 574
+  },
+  {
+    "path": "Firmware/components/LED/LED.h",
+    "sha256": "a02c3eafbcfd6c76d73732034c8ee828aa1840e3ce242d637eed52024f862330",
+    "bytes": 151
+  },
+  {
+    "path": "Firmware/components/MIC/MIC.c",
+    "sha256": "d318878d1e17e47dc2e24e092548c2953104f394623b78e316f6077fb0923bc8",
+    "bytes": 7528
+  },
+  {
+    "path": "Firmware/components/MIC/MIC.h",
+    "sha256": "0cfcb31300074af82a0422147a2962293f163b4473f9c8660b1f295b3b466444",
+    "bytes": 869
+  },
+  {
+    "path": "Firmware/components/OLED/OLED.c",
+    "sha256": "6547ed09a9809f81f326d39457a786e6d1a36a77371b3de262808a23109c33a3",
+    "bytes": 18385
+  },
+  {
+    "path": "Firmware/components/OLED/OLED.h",
+    "sha256": "a7eba3393cb953d5d37b0751001525d62fbae98fb390af062b55e8156cc27c1d",
+    "bytes": 3243
+  },
+  {
+    "path": "Firmware/components/OLED/oledfont.h",
+    "sha256": "b4134bced5ed55571223154e3b0e77dfa18d3021d701bcea4a6154e2bb6d2461",
+    "bytes": 16051
+  },
+  {
+    "path": "Firmware/components/PWM/PWM.c",
+    "sha256": "5b3bfb265c04db2d2e2fd49c71597b3be2f09e89a84b0a74b190ce6e3a030ce5",
+    "bytes": 1348
+  },
+  {
+    "path": "Firmware/components/PWM/PWM.h",
+    "sha256": "52f9be09b8008282f1a7cc33d6a4486c64b1e4837f64848cfb1c10c5f4d989be",
+    "bytes": 360
+  },
+  {
+    "path": "Firmware/main/CMakeLists.txt",
+    "sha256": "58914eeb609e415143e17d0edb4895136d9bf589af5fc1408c4bc52254dd1129",
+    "bytes": 114
+  },
+  {
+    "path": "Firmware/main/main.c",
+    "sha256": "b713f4e2f17bd11a5ee4646111291d8a4882a151bad4bd07890151154b8cece9",
+    "bytes": 12349
+  },
+  {
+    "path": "Firmware/sdkconfig",
+    "sha256": "c5b99109bc54b6c4b74481f586ba037bf54d0de032fecc918896c3bab6826ccf",
+    "bytes": 77907
+  },
+  {
+    "path": "Hardware/Altium/ESP32_Sound.PcbDoc",
+    "sha256": "54e25cd056f25393ca2893e6356b5d2b58a1ea258171870297bd0c63f4a4aecb",
+    "bytes": 5921660
+  },
+  {
+    "path": "Hardware/Altium/ESP32_Sound.PrjPcb",
+    "sha256": "fedbbfb64ee49b5de55332eb28f0ed45e057fcdc2f684b28d1ad0fe98aa9995e",
+    "bytes": 31635
+  },
+  {
+    "path": "Hardware/Altium/ESP32_Sound.SchDoc",
+    "sha256": "eac79447e2c464e67f6c2d4f4169d3d2f17f35183196fbebb65879bb15168f1f",
+    "bytes": 194560
+  },
+  {
+    "path": "Hardware/BOM/BOM_readable.md",
+    "sha256": "b76cb089163e28804cd83237c838047c1c456b0ae655cd84eddef1649767bcf3",
+    "bytes": 1706
+  },
+  {
+    "path": "Hardware/BOM/bomfile.xls",
+    "sha256": "ed9a10e9f1bc6c8de2dc42c5bdb4dd10daef6fbdcd8bf42e6290b09e07727a00",
+    "bytes": 7991
+  },
+  {
+    "path": "Photos/assembled-back.jpg",
+    "sha256": "d7cafc9451fff83ba66d6505fa876021990cb7761983801b27605f4c72c7f239",
+    "bytes": 185073
+  },
+  {
+    "path": "Photos/assembled-front.jpg",
+    "sha256": "97b6a07c5649eb1417bcc1de1d8ccc1cca21c1553e68e4ca7b085e2574e9e870",
+    "bytes": 331376
+  },
+  {
+    "path": "Photos/blue-indication.jpg",
+    "sha256": "38ece6028740cfb80dbcd603d1082a5fcceceb3df4f02aaf873262f0afc4bc95",
+    "bytes": 399110
+  },
+  {
+    "path": "Photos/doorbell-alert.jpg",
+    "sha256": "cef9636637322ccaa580aab15d3431c2f8e3eb4d10b8a22b36f1d308ae2bdfaf",
+    "bytes": 348297
+  },
+  {
+    "path": "Photos/knock-alert.jpg",
+    "sha256": "22ddc80c6c43661df3280712834130663872939b966c89a2526f28c52d8e9619",
+    "bytes": 403175
+  },
+  {
+    "path": "Photos/powered.jpg",
+    "sha256": "09d687cd00a61e509b037a5a41add6470600fd4707639f46c89252087ac76df3",
+    "bytes": 373840
+  },
+  {
+    "path": "README.md",
+    "sha256": "e0d04a0b3888130e980deaab96e567da9d1fcf12ebb7f157e576dfca7f126d12",
+    "bytes": 27390
+  },
+  {
+    "path": "Results/analyze_results.py",
+    "sha256": "048e8f61e2bf178a470f3be15517527d0193d553570b32c708095803eb069064",
+    "bytes": 6105
+  },
+  {
+    "path": "Results/README.md",
+    "sha256": "47ebe33bd17b2dab6c431efc05005ca1b1ebfe233a804cc8711a9ccd936b484c",
+    "bytes": 3826
+  },
+  {
+    "path": "Results/test_results_template.csv",
+    "sha256": "252d6c601e3e32643a5b41eab38219c8e6ca387cd939416dfadbad8915156c09",
+    "bytes": 426
+  },
+  {
+    "path": "Screenshots/PCB_3D/angled-back.png",
+    "sha256": "298e950eebf8647d80deb7fff377001d7a14e2298cf5a99ed96312db11a8e4c1",
+    "bytes": 33202
+  },
+  {
+    "path": "Screenshots/PCB_3D/angled-front.png",
+    "sha256": "ebb9a02d33a6b5b71cf7b3fc0544abe8310a03570950ced5493aa1cc87467eee",
+    "bytes": 64114
+  },
+  {
+    "path": "Screenshots/PCB_3D/back.png",
+    "sha256": "18e2bb462a379d0610fe1008612b7fcacd49b829b01f0d9fb985cd7c8ac27ac6",
+    "bytes": 131969
+  },
+  {
+    "path": "Screenshots/PCB_3D/front.png",
+    "sha256": "0a64a7728b3f3897f82cbad4578925c96af8763ba85ff3d3aa2d79bd2d8e53ce",
+    "bytes": 234316
+  },
+  {
+    "path": "Screenshots/PCB_3D/PCB_3D_View.png",
+    "sha256": "8ac28d56cde71f75c2f3e762da8667e60a976a7ed16be2ec11e0066fba4128ca",
+    "bytes": 2100160
+  },
+  {
+    "path": "Screenshots/PCB_Layout/PCB_Bottom_View.pdf",
+    "sha256": "9d2de79d6e74b70ff0e294de4dc69f10aab8da24be37449d8dc8144673dcd234",
+    "bytes": 63698
+  },
+  {
+    "path": "Screenshots/PCB_Layout/PCB_Bottom_View.png",
+    "sha256": "1fa03b17464486ec45554268618ec11de1b3e086f209e7df09b43bc28f467a8d",
+    "bytes": 482703
+  },
+  {
+    "path": "Screenshots/PCB_Layout/PCB_Top_View.pdf",
+    "sha256": "43b0106c5eb0157a4c1ee30cc4b97653eddecc378bbdf7c8931ae057689907a8",
+    "bytes": 136820
+  },
+  {
+    "path": "Screenshots/PCB_Layout/PCB_Top_View.png",
+    "sha256": "6248019b7e5221c2053286e5cb81e900adbe7e9a52be94a235309fb1ca8225a9",
+    "bytes": 741277
+  },
+  {
+    "path": "Screenshots/Schematic/Circuit_Schematic.pdf",
+    "sha256": "9b193995160607bae7e50b68e3de2a86eda8219c0c23347c6d9082f27712aa95",
+    "bytes": 293212
+  },
+  {
+    "path": "Screenshots/Schematic/Circuit_Schematic.png",
+    "sha256": "531afd3f5d2ad6ccf9798acb0fcadcea8bd732afa870d8349a118b9c2f70ded0",
+    "bytes": 211261
+  }
+]
