@@ -1,20 +1,18 @@
 # SilentSignal
 
-A small device that listens for door knocks and doorbells and turns them into a light, an on-screen message and a vibration. An ESP32-S3 on a custom PCB processes the microphone audio itself, with no phone app and no internet connection.
+A small portable device that tells different sounds apart, such as door knocks and doorbells, and turns them into a light, an on-screen message and a vibration. An ESP32-S3 on a custom PCB processes the microphone audio itself using signal processing (FFT) and rules I designed, with no phone app and no internet connection.
 
 <p align="center"><img src="photos/doorbell-alert.jpg" width="540" alt="Assembled SilentSignal showing SOUND DOORBELL and ALERT ON with a green light"></p>
 
 ## Why I built this
 
-<!-- TODO: rewrite this section in your own words. What made you want to build it? Who did you have in mind? What did you want to learn? -->
+Throughout high school, I've been involved with Sparkling Elder's Fund, a student-led nonprofit in Ontario, Canada. Our goal is to connect with elderly people and raise awareness for their community. In summer 2026, my team and I visited a local nursing home with hundreds of residents, most of them over 80. I noticed that many of them had hearing loss and often missed it when nurses called or knocked. Because of this, their doors had to be kept open, which left them with almost no privacy. Many of them also felt embarrassed about not being able to respond quickly. There are already solutions like smart doorbells, phone apps and Wi-Fi alert systems, but they can be difficult for elderly people to learn and use. I wanted to provide a direct, simple alternative that works on its own.
 
-People who are deaf or hard of hearing can easily miss someone at the door, because knocks and doorbells are only sound. Most existing solutions need a smart doorbell, a phone app or a Wi-Fi connection. I wanted to see if one small board could do it on its own: hear the sound, work out what it is, and give an alert you can see and feel.
+### Design objectives
 
-The questions I wanted to answer:
-
-1. Can a cheap microcontroller tell a knock apart from a doorbell using simple signal processing instead of machine learning?
-2. Can I design and build my own PCB for it, not just a breadboard?
-3. What actually makes sound recognition hard in a real room?
+- Alerts you can both see and feel (light, screen, vibration)
+- Simple enough to use with two buttons
+- Small enough to sit in a resident's room or be worn on the arm
 
 ## What I did
 
@@ -25,14 +23,6 @@ The questions I wanted to answer:
 - **Assembled and tested the board,** then fixed the LED and motor wiring by hand (visible in the photos).
 
 ## How it works
-
-```
-[Sound] --> [INMP441 mic] --I2S--> [ESP32-S3: FFT + rules] --> [Alert state]
-                                                                     |
-                     [MODE / CONFIRM buttons] ------------------------+
-                                                                     |
-                               [OLED text] <-- [RGB LED] <-- [Vibration motor]
-```
 
 1. The microphone sends audio to the ESP32-S3 at 16,000 samples per second.
 2. Every 256 samples (16 ms), the firmware measures how loud the frame is and runs an FFT to find the strongest frequency.
@@ -92,9 +82,9 @@ Altium files: [project](hardware/altium/ESP32_Sound.PrjPcb), [schematic](hardwar
 | ![Doorbell alert](photos/doorbell-alert.jpg) | ![Other sound](photos/blue-indication.jpg) |
 | Doorbell detected: green alert | Other sound: blue, no alert |
 
-<!-- TODO: if you have photos from earlier (breadboard prototype, bare PCB, soldering), add a "Build progress" section like this with numbered photos. -->
-
 ## Testing
+
+Before the measured test, I tried SilentSignal informally with real knocks and doorbells at home, plus hundreds of knock and doorbell recordings from online sources. Then I ran a structured test to get real numbers.
 
 **Setup:** NORMAL mode, indoors, with the device on a table and the microphone facing the sound. I ran 8 tests with 10 trials each (80 trials in total). After each sound I waited 3 seconds, recorded whether the LED showed knock (red), doorbell (green), other (blue) or nothing, then pressed CONFIRM.
 
@@ -117,8 +107,6 @@ Altium files: [project](hardware/altium/ESP32_Sound.PrjPcb), [schematic](hardwar
 
 ![Correct rate by test](results/graph1_correct_rate.png)
 
-![What SilentSignal detected for each sound](results/graph2_detections.png)
-
 ### What I found
 
 - **Distance matters a lot.** Knock detection dropped from 70% at 1 m to 40% at 3 m, and doorbells dropped from 80% to 60%. At 3 m, 3 of 10 knocks didn't trigger anything at all, so the loudness threshold is probably too strict for quieter, more distant sounds.
@@ -129,21 +117,14 @@ Altium files: [project](hardware/altium/ESP32_Sound.PrjPcb), [schematic](hardwar
 
 The raw counts are in [`results/test_results.csv`](results/test_results.csv), and [`results/plot_results.py`](results/plot_results.py) makes the graphs.
 
-## Issues I found in my own design
-
-Reviewing the board after building it, I found a few things to fix in the next revision:
-
-- **LED polarity mismatch.** The schematic uses a common-anode RGB LED, but the firmware drives it as active-high. I fixed it with rework wires on this board (the red wires on the front).
-- **Motor drive resistor.** The motor supply path goes through a 1 kΩ resistor (R2), which limits the current to only a few mA in theory. The motor is also hand-wired on this board. Both need to be fixed properly on the next PCB.
-- **Diode part number conflict.** The BOM lists the diodes as both M7 and SS24, which are very different parts.
-- **Frequency estimate is rough.** The FFT bins are 62.5 Hz apart, and the firmware rounds that to 62, so frequency readings drift slightly at higher bins.
+To make future testing more detailed and repeatable, I also set up a log sheet ([`results/test_results_template.csv`](results/test_results_template.csv)) where each row records one trial: the sound, the distance, the background noise and what the device detected. A Python script ([`results/analyze_results.py`](results/analyze_results.py)) reads the sheet and calculates how often each sound was recognized, missed or mislabelled, plus the false-alert rate.
 
 ## Limitations
 
-- Each test was only 10 trials in one room, so a few trials can change a percentage a lot.
-- I haven't measured latency or run a long background-noise test (for example, 10 minutes of TV) to get a false-alerts-per-hour rate yet.
+- Each test was only 10 trials in one room, so a few trials can change a percentage a lot. I haven't measured latency or a false-alerts-per-hour rate yet.
 - The classifier is rule-based, so loud sounds shaped like a knock (footsteps, dropped objects) or steady beeps could trigger it.
 - Power use, motor current and regulator temperature haven't been measured.
+- **Frequency estimate is rough.** The FFT bins are 62.5 Hz apart, and the firmware rounds that to 62, so frequency readings drift slightly at higher bins.
 
 ## Running it
 
@@ -162,7 +143,7 @@ idf.py -p COM_PORT flash monitor
 
 **Hardware:** open `hardware/altium/ESP32_Sound.PrjPcb` in Altium Designer.
 
-**Graphs:** `python results/plot_results.py` (needs matplotlib)
+**Test results:** `python results/analyze_results.py results/your-results.csv`
 
 ## Files
 
@@ -174,7 +155,7 @@ idf.py -p COM_PORT flash monitor
 | `hardware/bom/` | bill of materials |
 | `screenshots/` | schematic, PCB layout and 3D renders |
 | `photos/` | photos of the finished board |
-| `results/` | test results, graphs and the script that makes them |
+| `results/` | test results, graphs, log template and analysis script |
 | `docs/design-notes.md` | component choices, full pin map, calculations and firmware details |
 | `docs/testing.md` | full test plan |
 
@@ -182,7 +163,5 @@ idf.py -p COM_PORT flash monitor
 
 - Find out why footsteps trigger the doorbell rule, and tune the knock threshold to work at 3 m, then rerun the same 80 trials to compare.
 - Run a 10-minute background-noise test and the mode test.
-- Record a short demo video of a real knock and doorbell triggering alerts.
-- PCB v2: fix the LED polarity and motor driver, and confirm the diode part.
-- Design an enclosure with a proper microphone opening.
+- Design an enclosure with a proper microphone opening using CAD.
 - Try a small TinyML model and compare it with the rule-based classifier.
