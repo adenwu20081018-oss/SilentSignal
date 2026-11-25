@@ -96,26 +96,38 @@ Altium files: [project](hardware/altium/ESP32_Sound.PrjPcb), [schematic](hardwar
 
 ## Testing
 
-So far I've tested SilentSignal informally at home with real knocks and doorbells, and recognition worked well for a first prototype. I haven't run a measured test yet, so there are no accuracy numbers here.
+**Setup:** NORMAL mode, indoors, with the device on a table and the microphone facing the sound. I ran 8 tests with 10 trials each (80 trials in total). After each sound I waited 3 seconds, recorded whether the LED showed knock (red), doorbell (green), other (blue) or nothing, then pressed CONFIRM.
 
-The next step is a proper test. I've written the full plan in [docs/testing.md](docs/testing.md):
+- **Target sounds** (A–E): correct means the right alert.
+- **Trick sounds** (F–H): correct means no knock or doorbell alert (blue or nothing).
 
-| Test | What changes | What I'm checking |
-|---|---|---|
-| Knocks | light, normal and firm knocks at different distances and doors | when the knock rule starts missing |
-| Doorbells | different chimes and tones | whether the tone rule handles bells that change pitch |
-| Background | quiet room, fan, speech, TV | whether it stays quiet without a real target |
-| Tricky sounds | footsteps, dropped objects, table taps, phone tones | false alerts |
-| Outputs and controls | each mode, CONFIRM, LED colours, vibration | the alerts and buttons behave correctly |
-
-Results get logged in [`results/test_results_template.csv`](results/test_results_template.csv) and summarized with [`results/analyze_results.py`](results/analyze_results.py).
-
-<!-- TODO after testing: add a results table (e.g. detection rate per distance/condition, false alerts per hour), 1-2 graphs in results/, and a "What I found" list like:
 ### Results
-| Test | Trials | Detected | Wrong label | Missed |
+
+| Test | Knock | Doorbell | Other | Nothing | Correct |
+|---|---|---|---|---|---|
+| A. Knock, 1 m | **7** | 0 | 2 | 1 | 70% |
+| B. Knock, 3 m | **4** | 2 | 1 | 3 | 40% |
+| C. Light knock, 1 m | **6** | 1 | 2 | 1 | 60% |
+| D. Doorbell, 1 m | 1 | **8** | 0 | 1 | 80% |
+| E. Doorbell, 3 m | 2 | **6** | 1 | 1 | 60% |
+| F. Footsteps, 1 m | 2 | 3 | 2 | 3 | 50% |
+| G. Dropped object, 1 m | 3 | 1 | 4 | 2 | 60% |
+| H. Phone beep, 1 m | 1 | 2 | 2 | 5 | 70% |
+| **Total** | | | | | **49 / 80 (61%)** |
+
+![Correct rate by test](results/graph1_correct_rate.png)
+
+![What SilentSignal detected for each sound](results/graph2_detections.png)
+
 ### What I found
-- ...
--->
+
+- **Distance matters a lot.** Knock detection dropped from 70% at 1 m to 40% at 3 m, and doorbells dropped from 80% to 60%. At 3 m, 3 of 10 knocks didn't trigger anything at all, so the loudness threshold is probably too strict for quieter, more distant sounds.
+- **Doorbells were easier to recognize than knocks** at both distances. The doorbell rule looks for a steady tone across several frames, which gives it more evidence to work with. A knock is one short, sharp sound, and it varies a lot with how hard you knock and what the door is made of.
+- **Trick sounds caused false alerts in 12 of 30 trials.** Dropped objects were mistaken for knocks 3 times, because both are sudden impacts. Footsteps were mistaken for a doorbell 3 times, which I didn't expect. Footsteps shouldn't sound like a steady tone, so this is the first thing I want to investigate.
+- **Knocks and doorbells sometimes got mixed up:** 6 of the 50 target trials got the wrong alert.
+- **For an elderly user, a missed knock is worse than a false alert,** so the next version should focus first on detecting knocks from farther away.
+
+The raw counts are in [`results/test_results.csv`](results/test_results.csv), and [`results/plot_results.py`](results/plot_results.py) makes the graphs.
 
 ## Issues I found in my own design
 
@@ -128,7 +140,8 @@ Reviewing the board after building it, I found a few things to fix in the next r
 
 ## Limitations
 
-- No measured accuracy, range, latency or false-alert rate yet; the testing so far is informal.
+- Each test was only 10 trials in one room, so a few trials can change a percentage a lot.
+- I haven't measured latency or run a long background-noise test (for example, 10 minutes of TV) to get a false-alerts-per-hour rate yet.
 - The classifier is rule-based, so loud sounds shaped like a knock (footsteps, dropped objects) or steady beeps could trigger it.
 - Power use, motor current and regulator temperature haven't been measured.
 
@@ -149,7 +162,7 @@ idf.py -p COM_PORT flash monitor
 
 **Hardware:** open `hardware/altium/ESP32_Sound.PrjPcb` in Altium Designer.
 
-**Test results:** `python results/analyze_results.py results/your-results.csv`
+**Graphs:** `python results/plot_results.py` (needs matplotlib)
 
 ## Files
 
@@ -161,13 +174,14 @@ idf.py -p COM_PORT flash monitor
 | `hardware/bom/` | bill of materials |
 | `screenshots/` | schematic, PCB layout and 3D renders |
 | `photos/` | photos of the finished board |
-| `results/` | test log template and analysis script |
+| `results/` | test results, graphs and the script that makes them |
 | `docs/design-notes.md` | component choices, full pin map, calculations and firmware details |
 | `docs/testing.md` | full test plan |
 
 ## Next steps
 
-- Run the full test and add the results and graphs here.
+- Find out why footsteps trigger the doorbell rule, and tune the knock threshold to work at 3 m, then rerun the same 80 trials to compare.
+- Run a 10-minute background-noise test and the mode test.
 - Record a short demo video of a real knock and doorbell triggering alerts.
 - PCB v2: fix the LED polarity and motor driver, and confirm the diode part.
 - Design an enclosure with a proper microphone opening.
