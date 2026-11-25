@@ -4,6 +4,12 @@ A small portable device that tells different sounds apart, such as door knocks a
 
 <p align="center"><img src="photos/doorbell-alert.jpg" width="540" alt="Assembled SilentSignal showing SOUND DOORBELL and ALERT ON with a green light"></p>
 
+## Demo
+
+[![Watch the SilentSignal demo](demo/thumbnail.jpg)](demo/silentsignal-demo.mp4)
+
+*30-second demo: SilentSignal detecting sounds (blue = other, green = doorbell, red = knock) and the CONFIRM button clearing an alert. Click the image to watch.*
+
 ## Why I built this
 
 Throughout high school, I've been involved with Sparkling Elder's Fund, a student-led nonprofit in Ontario, Canada. Our goal is to connect with elderly people and raise awareness for their community. In summer 2026, my team and I visited a local nursing home with hundreds of residents, most of them over 80. I noticed that many of them had hearing loss and often missed it when nurses called or knocked. Because of this, their doors had to be kept open, which left them with almost no privacy. Many of them also felt embarrassed about not being able to respond quickly. There are already solutions like smart doorbells, phone apps and Wi-Fi alert systems, but they can be difficult for elderly people to learn and use. I wanted to provide a direct, simple alternative that works on its own.
@@ -155,6 +161,7 @@ idf.py -p COM_PORT flash monitor
 | `hardware/bom/` | bill of materials |
 | `screenshots/` | schematic, PCB layout and 3D renders |
 | `photos/` | photos of the finished board |
+| `demo/` | demo video and thumbnail |
 | `results/` | test results, graphs, log template and analysis script |
 | `docs/design-notes.md` | component choices, full pin map, calculations and firmware details |
 | `docs/testing.md` | full test plan |
