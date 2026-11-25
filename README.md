@@ -1,4 +1,4 @@
-# SilentSignal
+# SilentSignal: Sound-Recognition Alert Device on a Custom ESP32-S3 PCB
 
 A small portable device that tells different sounds apart, such as door knocks and doorbells, and turns them into a light, an on-screen message and a vibration. An ESP32-S3 on a custom PCB processes the microphone audio itself using signal processing (FFT) and rules I designed, with no phone app and no internet connection.
 
