@@ -92,6 +92,8 @@ Altium files: [project](hardware/altium/ESP32_Sound.PrjPcb), [schematic](hardwar
 
 Before the measured test, I tried SilentSignal informally with real knocks and doorbells at home, plus hundreds of knock and doorbell recordings from online sources. Then I ran a structured test to get real numbers.
 
+A sample of my own recordings (55 clips: 14 knocks, 12 doorbells and 29 background-noise samples) is in [`recordings/`](recordings/). Most of my testing was done live with real knocks and doorbells, so these are only part of what I tested with.
+
 **Setup:** NORMAL mode, indoors, with the device on a table and the microphone facing the sound. I ran 8 tests with 10 trials each (80 trials in total). After each sound I waited 3 seconds, recorded whether the LED showed knock (red), doorbell (green), other (blue) or nothing, then pressed CONFIRM.
 
 - **Target sounds** (A–E): correct means the right alert.
@@ -162,6 +164,7 @@ idf.py -p COM_PORT flash monitor
 | `screenshots/` | schematic, PCB layout and 3D renders |
 | `photos/` | photos of the finished board |
 | `demo/` | demo video and thumbnail |
+| `recordings/` | sample of my knock, doorbell and background-noise recordings |
 | `results/` | test results, graphs, log template and analysis script |
 | `docs/design-notes.md` | component choices, full pin map, calculations and firmware details |
 | `docs/testing.md` | full test plan |
